@@ -43,6 +43,12 @@ public class GameManager : MonoBehaviour
                         SpawnPrisoner(findSpawnPoints[i].transform.position);
                     }
                     break;
+                case SpawnPoint.SpawnType.Enemy:
+                    if(canSpawn == 1)
+                    {
+                        SpawnEnemy(findSpawnPoints[i].transform.position);
+                    }
+                    break;
             }
         }
     }
@@ -65,6 +71,11 @@ public class GameManager : MonoBehaviour
     private void SpawnPrisoner(Vector3 spawnPosition)
     {
         GameObject go = Instantiate((GameObject)Resources.Load(string.Format("Prefabs/Prisoners/Prisoner{0}", Random.Range(1, 11).ToString())));
+        go.transform.position = new Vector3(spawnPosition.x, spawnPosition.y, spawnPosition.z);
+    }
+    private void SpawnEnemy(Vector3 spawnPosition)
+    {
+        GameObject go = Instantiate((GameObject)Resources.Load("Prefabs/Enemy"));
         go.transform.position = new Vector3(spawnPosition.x, spawnPosition.y, spawnPosition.z);
     }
 }

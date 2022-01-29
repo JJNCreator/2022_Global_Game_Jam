@@ -9,7 +9,8 @@ public class SpawnPoint : MonoBehaviour
         Player,
         CapturedCreature,
         Tree,
-        Cage
+        Cage,
+        Enemy
     }
     public SpawnType typeToSpawn;
     // Start is called before the first frame update
