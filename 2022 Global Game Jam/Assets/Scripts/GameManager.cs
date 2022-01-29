@@ -19,12 +19,6 @@ public class GameManager : MonoBehaviour
     {
         SpawnPrefabs();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void SpawnPrefabs()
     {
         SpawnPoint[] findSpawnPoints = FindObjectsOfType<SpawnPoint>();
