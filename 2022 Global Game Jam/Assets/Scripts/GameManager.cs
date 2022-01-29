@@ -48,8 +48,6 @@ public class GameManager : MonoBehaviour
                     {
                         SpawnEnemy(findSpawnPoints[i].transform.position);
                     }
-                    //SpawnEnemy(findSpawnPoints[i].transform.position);
-
                     break;
             }
         }

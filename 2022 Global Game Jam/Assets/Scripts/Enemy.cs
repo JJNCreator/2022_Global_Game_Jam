@@ -27,8 +27,13 @@ public class Enemy : MonoBehaviour
     {
         if(canMove)
         {
-            transformCache.rotation = Quaternion.Slerp(transformCache.rotation, Quaternion.LookRotation(target.position - transformCache.position), rotateSpeed * Time.deltaTime);
-            transformCache.position += transformCache.forward * moveSpeed * Time.deltaTime;
+            //Debug.Log("Enemy:Update() - distance between enemy and player: " + Vector3.Distance(transformCache.position, target.position));
+
+            if (Vector3.Distance(transformCache.position, target.position) > 100f)
+            {
+                transformCache.rotation = Quaternion.Slerp(transformCache.rotation, Quaternion.LookRotation(target.position - transformCache.position), rotateSpeed * Time.deltaTime);
+                transformCache.position += transformCache.forward * moveSpeed * Time.deltaTime;
+            }
         }
     }
     private void OnTriggerEnter(Collider other)
