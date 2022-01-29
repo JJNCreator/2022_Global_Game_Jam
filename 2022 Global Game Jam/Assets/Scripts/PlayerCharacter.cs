@@ -18,6 +18,7 @@ public class PlayerCharacter : MonoBehaviour
     private CharacterController cController;
     private Vector3 moveDirection;
     private CameraMovement camMovement;
+    private float originalMoveSpeed;
 
     private void Awake()
     {
@@ -28,7 +29,7 @@ public class PlayerCharacter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        originalMoveSpeed = moveSpeed;
     }
 
     // Update is called once per frame
@@ -40,6 +41,16 @@ public class PlayerCharacter : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+        if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            moveSpeed = 3500f;
+        }
+        else
+        {
+            moveSpeed = originalMoveSpeed;
+        }
+        //TODO: Set up code for dodging
+
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
         if(cController.isGrounded)
         {
