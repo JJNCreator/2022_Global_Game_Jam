@@ -7,13 +7,21 @@ public class PlayerCharacter : MonoBehaviour
 {
     public float moveSpeed;
     public float rotateSpeed;
+    public float turnSmoothTime = 0.1f;
+
+    private float gravity = 9f;
+    private float verticalSpeed;
+
+    private float turnSmoothVelocity;
 
     private Transform transformCache;
     private CharacterController cController;
     private Vector3 moveDirection;
+    private CameraMovement camMovement;
 
     private void Awake()
     {
+        camMovement = FindObjectOfType<CameraMovement>();
         cController = GetComponent<CharacterController>();
         transformCache = transform;
     }
@@ -33,10 +41,20 @@ public class PlayerCharacter : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+        if(cController.isGrounded)
+        {
+            verticalSpeed = 0f;
+        }
+        verticalSpeed -= gravity * Time.deltaTime;
 
         if(direction.magnitude >= 0.1f)
         {
-            cController.Move(direction * moveSpeed * Time.deltaTime);
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + camMovement.transform.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            transformCache.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            moveDir.y = verticalSpeed;
+            cController.Move(moveDir.normalized * moveSpeed * Time.deltaTime);
         }
     }
 }

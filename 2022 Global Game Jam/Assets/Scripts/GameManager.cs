@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
     {
         GameObject go = Instantiate((GameObject)Resources.Load("Prefabs/Player"));
         go.transform.position = new Vector3(spawnPosition.x, spawnPosition.y, spawnPosition.z);
+        FindObjectOfType<CameraMovement>().target = go.transform;
     }
     private void SpawnTree(Vector3 spawnPosition)
     {
