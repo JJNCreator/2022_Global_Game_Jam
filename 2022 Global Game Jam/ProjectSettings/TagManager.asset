@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Prisoner
   - Enemy
+  - Cage
   layers:
   - Default
   - TransparentFX

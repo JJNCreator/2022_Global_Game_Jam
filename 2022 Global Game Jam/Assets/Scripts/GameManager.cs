@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
             return instance;
         }
     }
+    public int cagesFreedCount = 0;
+    public int cagesToBeFreed;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +42,8 @@ public class GameManager : MonoBehaviour
                     if (canSpawn == 1)
                     {
                         SpawnCage(findSpawnPoints[i].transform.position);
-                        SpawnPrisoner(findSpawnPoints[i].transform.position);
+                        //SpawnPrisoner(findSpawnPoints[i].transform.position);
+                        cagesToBeFreed++;
                     }
                     break;
                 case SpawnPoint.SpawnType.Enemy:
@@ -67,11 +70,14 @@ public class GameManager : MonoBehaviour
     {
         GameObject go = Instantiate((GameObject)Resources.Load("Prefabs/Cage"));
         go.transform.position = new Vector3(spawnPosition.x, spawnPosition.y, spawnPosition.z);
+        GameObject spawnPrisoner = SpawnPrisoner(spawnPosition);
+        go.GetComponent<Cage>().trappedPrisoner = spawnPrisoner;
     }
-    private void SpawnPrisoner(Vector3 spawnPosition)
+    private GameObject SpawnPrisoner(Vector3 spawnPosition)
     {
         GameObject go = Instantiate((GameObject)Resources.Load(string.Format("Prefabs/Prisoners/Prisoner{0}", Random.Range(1, 11).ToString())));
         go.transform.position = new Vector3(spawnPosition.x, spawnPosition.y, spawnPosition.z);
+        return go;
     }
     private void SpawnEnemy(Vector3 spawnPosition)
     {

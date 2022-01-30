@@ -19,10 +19,10 @@ public class GameEnd : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       //if (sth)
-       //{
-       //     win.SetActive(true);
-       // }
+       if (GameManager.Instance.cagesFreedCount >= GameManager.Instance.cagesToBeFreed)
+       {
+            win.SetActive(true);
+       }
 
         if (healthScript.Dead)
         {
