@@ -10,6 +10,17 @@ public class Health : MonoBehaviour
     public healthBar healthBar;
     public bool Dead;
 
+    private static Health instance;
+    public static Health Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType<Health>();
+            return instance;
+        }
+    }
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -29,7 +40,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);

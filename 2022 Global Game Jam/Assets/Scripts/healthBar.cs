@@ -6,6 +6,16 @@ using UnityEngine.UI;
 public class healthBar : MonoBehaviour
 {
     public Slider slider;
+    private static healthBar instance;
+    public static healthBar Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType<healthBar>();
+            return instance;
+        }
+    }
 
     public void SetMaxHealth(int health)
     {

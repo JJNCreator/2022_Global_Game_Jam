@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public int maxHealth = 5;
+    public int currentHealth;
     public Transform target;
     public float moveSpeed;
     public float rotateSpeed;
@@ -21,6 +23,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentHealth = maxHealth;
         target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
@@ -37,6 +40,15 @@ public class Enemy : MonoBehaviour
                 transformCache.position += transformCache.forward * moveSpeed * Time.deltaTime;
             }
         }*/
+    }
+    public void TakeDamage(int amount)
+    {
+        currentHealth -= amount;
+        if(currentHealth <= 0)
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCombat>().target = null;
+            Destroy(this.gameObject);
+        }
     }
     private void FixedUpdate()
     {
