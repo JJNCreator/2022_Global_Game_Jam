@@ -304,8 +304,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000034332, y: 90.21}
-  m_SizeDelta: {x: 932.0149, y: 180.42072}
+  m_AnchoredPosition: {x: -0.000030518, y: 90.21}
+  m_SizeDelta: {x: 1333.8206, y: 180.42072}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &591894531
 MonoBehaviour:
@@ -326,7 +326,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game name
+  m_text: Turned Monster
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 09b151e3daf304f47afc8521de557dcd, type: 2}
   m_sharedMaterial: {fileID: 770412032055081007, guid: 09b151e3daf304f47afc8521de557dcd,
