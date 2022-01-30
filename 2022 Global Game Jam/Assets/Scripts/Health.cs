@@ -8,11 +8,13 @@ public class Health : MonoBehaviour
     public int currentHealth;
 
     public healthBar healthBar;
+    public bool Dead;
 
     private void Start()
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        Dead = false;
     }
 
     // Update is called once per frame
@@ -20,6 +22,11 @@ public class Health : MonoBehaviour
     {
         // if (something)
         // { TakeDamage(1); }
+
+        if(currentHealth < 1)
+        {
+            Dead = true;
+        }
     }
 
     void TakeDamage(int damage)
