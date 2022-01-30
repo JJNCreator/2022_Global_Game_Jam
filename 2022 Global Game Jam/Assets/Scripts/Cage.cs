@@ -20,6 +20,7 @@ public class Cage : MonoBehaviour
             if(Input.GetKeyUp(KeyCode.I))
             {
                 GameManager.Instance.cagesFreedCount++;
+                GameManager.Instance.UpdateCagesCountUI();
                 Destroy(trappedPrisoner);
                 Destroy(this.gameObject);
             }

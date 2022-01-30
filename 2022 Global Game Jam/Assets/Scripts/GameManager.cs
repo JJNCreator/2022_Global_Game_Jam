@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,10 +17,12 @@ public class GameManager : MonoBehaviour
     }
     public int cagesFreedCount = 0;
     public int cagesToBeFreed;
+    public Text cagesCountText;
     // Start is called before the first frame update
     void Start()
     {
         SpawnPrefabs();
+        UpdateCagesCountUI();
     }
     private void SpawnPrefabs()
     {
@@ -83,5 +86,12 @@ public class GameManager : MonoBehaviour
     {
         GameObject go = Instantiate((GameObject)Resources.Load("Prefabs/Enemy"));
         go.transform.position = new Vector3(spawnPosition.x, spawnPosition.y, spawnPosition.z);
+    }
+    public void UpdateCagesCountUI()
+    {
+        if(cagesCountText != null)
+        {
+            cagesCountText.text = string.Format("Prisoners freed: {0}/{1}", cagesFreedCount.ToString(), cagesToBeFreed.ToString());
+        }
     }
 }
